@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  fluentdforwarder:
+    build: ./fluentdforwarder
+    volumes:
+      - ./fluentdforwarder/conf:/fluentd/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    networks: 
+      - fluent-network
+
+networks:
+  fluent-network:
+    external: true

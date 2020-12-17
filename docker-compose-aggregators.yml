@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  fluentdaggregatorone:
+    build: ./fluentaggregatorone
+    volumes:
+      - ./fluentaggregatorone/conf:/fluentd/etc
+    ports:
+      - "8081:8081"
+      - "8081:8081/udp"
+    networks: 
+      - fluent-network
+
+  fluentdaggregatortwo:
+    build: ./fluentaggregatortwo
+    volumes:
+      - ./fluentaggregatortwo/conf:/fluentd/etc
+    ports:
+      - "8082:8082"
+      - "8082:8082/udp"
+    networks: 
+      - fluent-network
+
+networks:
+  fluent-network:
+    name: fluent-network
+    driver: bridge
+  
+    
